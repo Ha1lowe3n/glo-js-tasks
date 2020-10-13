@@ -10,8 +10,6 @@ const money = +prompt('Ваш месячный доход?'),
   addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит'),
   deposit = confirm('Есть ли у вас депозит в банке?');
 
-console.log(typeof money + ', ' + typeof income + ', ' + typeof deposit);
-
 let budgetDay = Math.round(money / 30);
   
 
@@ -22,23 +20,23 @@ const expensesOne = prompt('Введите обязательную статью
 
 
 // lesson 4
-const getExpensesMonth = () => {
-  return +amountOne + +amountTwo;
+const getExpensesMonth = function() {
+  return +amountOne + (+amountTwo);
 };
 
-const getAccumulatedMonth = () => {
+const getAccumulatedMonth = function() {
   return +money - +amountOne - +amountTwo;
 };
 
 const accumulatedMonth = getAccumulatedMonth();
 
-const getTargetMonth = () => {
+const getTargetMonth = function() {
   return mission / accumulatedMonth;
 };
 
 budgetDay = accumulatedMonth / 30;
 
-const showTypeOf = (name) => {
+const showTypeOf = function(name) {
   return typeof(name);
 };
 
