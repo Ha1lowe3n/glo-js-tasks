@@ -1,9 +1,5 @@
 'use strict';
 
-let money = 50000,
-  addExpenses = "internet, taxi, study",
-  deposit = true;
-
 const income = "Frilance",
   mission = 1000000,
   period = 8;
@@ -11,25 +7,23 @@ const income = "Frilance",
 alert("Hello, it's my first homework");
 console.log("I'm here too");
 
-console.log(typeof money + ', ' + typeof income + ', ' + typeof deposit);
-
-console.log(addExpenses.length);
-
 console.log(`Период равен ${period} месяцев`);
 console.log(`Цель заработать ${mission} рублей`);
 
-console.log(addExpenses.toLowerCase().split(', '));
+// lesson 3 
+const money = prompt('Ваш месячный доход?'),
+  addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит'),
+  deposit = confirm('Есть ли у вас депозит в банке?');
+
+console.log(typeof money + ', ' + typeof income + ', ' + typeof deposit);
 
 let budgetDay = Math.round(money / 30);
 console.log(budgetDay);
 
+console.log(addExpenses.length);
 
-// lesson 3 
-money = prompt('Ваш месячный доход?');
-
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Квартплата, проездной, кредит');
-
-deposit = confirm('Есть ли у вас депозит в банке?');
+console.log(addExpenses.toLowerCase().split(', '));
+  
 
 const expensesOne = prompt('Введите обязательную статью расходов?'),
   amountOne = prompt('Во сколько это обойдется?'),
