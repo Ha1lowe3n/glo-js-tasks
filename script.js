@@ -17,9 +17,6 @@ const money = prompt('Ваш месячный доход?'),
 
 console.log(typeof money + ', ' + typeof income + ', ' + typeof deposit);
 
-let budgetDay = Math.round(money / 30);
-console.log(budgetDay);
-
 console.log(addExpenses.length);
 
 console.log(addExpenses.toLowerCase().split(', '));
@@ -35,8 +32,9 @@ const budgetMonth = +money - +amountOne - +amountTwo;
 console.log(budgetMonth);
 
 const missionMonth = Math.ceil(mission / budgetMonth);
+console.log(`Цель будет достигнута через ${missionMonth} месяцев`);
 
-budgetDay = budgetMonth / 30;
+const budgetDay = budgetMonth / 30;
 console.log(Math.floor(budgetDay));
 
 if (budgetDay >= 1200) {
