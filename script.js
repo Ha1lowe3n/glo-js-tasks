@@ -16,9 +16,9 @@ let money;
 const start = function() {
 
   do {
-    money = +prompt('Ваш месячный доход?');
+    money = prompt('Ваш месячный доход?');
   }
-  while (!isNumber(money));
+  while (!isNumber(money) || money.trim() === '' || money === null);
 };
 start();
 
@@ -28,15 +28,19 @@ let expenses = [];
 
 const getExpensesMonth = function() {
   let sum = 0;
+  let b;
 
   for (let i = 0; i < 2; i++) {
     expenses[i] = prompt('Введите обязательную статью расходов?');
     
-    sum += +prompt('Во сколько это обойдется?');
+    b = prompt('Во сколько это обойдется?');
 
-    while (!isNumber(sum)) {
-      prompt('Во сколько это обойдется?');
+    while (!isNumber(b) || b.trim() === '' || b === null) {
+      b = prompt('Во сколько это обойдется?');
     }
+
+    sum += parseFloat(b);
+    
   }
   console.log(expenses);
 
@@ -88,14 +92,6 @@ const getStatusIncome = function() {
 };
 
 console.log(getStatusIncome());
-
-
-
-
-
-
-
-
 
 
 
