@@ -47,7 +47,6 @@ const appData = {
     for (let key in appData.expenses) {
       appData.expensesMonth += +appData.expenses[key];
     }
-    // return appData.expensesMonth;
   },
 
   getBudget: function() {
