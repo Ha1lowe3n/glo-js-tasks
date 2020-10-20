@@ -1,14 +1,24 @@
 'use strict';
 
+// функция для правильного окончания слов
+const declination = function(number, txt) {
+  let cases = [2, 0, 1, 1, 1, 2];
+  return txt[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+};
+
 const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+const isString = function(n) {
+  return typeof(n) !== 'string' || isNumber(n) || n.trim() === '' || n === null;
 };
 
 let money;
 
 const start = function() {
   do {
-    money = prompt('Ваш месячный доход?');
+    money = prompt('Ваш месячный доход?', 50000);
   }
   while (!isNumber(money) || money.trim() === '' || money === null);
 };
@@ -20,6 +30,8 @@ const appData = {
   expenses: {}, // доп. расходы
   addExpenses: [],
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 1000000,
   period: 3,
   budget: money,
@@ -27,13 +39,43 @@ const appData = {
   budgetMonth: 0,
   expensesMonth: 0,
   asking: function() {
+
+    if (confirm('Есть ли у вас дополнительный источник заработка?')) {
+      let itemIncome = prompt('Какой у вас дополнительный заработок', 'Такси');
+      
+      while (isString(itemIncome)) {
+        itemIncome = prompt('Какой у вас дополнительный заработок', 'Такси');
+      }
+
+      let cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 20000);
+
+      while (!isNumber(cashIncome) || cashIncome.trim() === '' || cashIncome === null) {
+        cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 20000);
+      }
+
+      appData.income[itemIncome] = cashIncome;
+    }
+
     const addExpenses = prompt('Перечислите возможные расходы через запятую', 'Квартплата, проездной, кредит');
     appData.addExpenses = addExpenses.toLowerCase().split(', ');
     appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
     for (let i = 0; i < 2; i++) {
-      let a = prompt('Введите обязательную статью расходов?', 'Детский сад'),
-          b = prompt('Во сколько это обойдется?');
+      let expensesStr;
+
+      if (i === 0) {
+        expensesStr = 'Детский сад';
+      } else {
+        expensesStr = 'ЖКХ';
+      }
+
+      let a = prompt(`Введите обязательную статью расходов?`, `${expensesStr}`);
+
+      while (isString(a)) {
+        a = prompt(`Введите обязательную статью расходов?`, `${expensesStr}`);
+      }
+
+      let b = prompt('Во сколько это обойдется?');
       
       while (!isNumber(b) || b.trim() === '' || b === null) {
         b = prompt('Во сколько это обойдется?');
@@ -68,6 +110,26 @@ const appData = {
     } else {
       return ('Что то пошло не так');
     }
+  },
+
+  getInfoDeposit: function() {
+    if (appData.deposit) {
+      appData.percentDeposit = prompt('Какой годовой процент?', 10);
+
+      while (!isNumber(appData.percentDeposit) || appData.percentDeposit.trim() === '' || appData.percentDeposit === null) {
+        appData.percentDeposit = prompt('Какой годовой процент?', 10);
+      }
+
+      appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+
+      while (!isNumber(appData.moneyDeposit) || appData.moneyDeposit.trim() === '' || appData.moneyDeposit === null) {
+        appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+      }
+    }
+  },
+
+  calcSavedMoney: function() {
+    return appData.budgetMonth * appData.period;
   }
 };
 
@@ -75,13 +137,40 @@ appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 
+const numberMonth = appData.getTargetMonth();
+
 console.log(`Расходы за месяц: ${appData.expensesMonth}`);
-console.log(`Цель будет достигнута за ${appData.getTargetMonth()} месяцев`);
+console.log(`Цель будет достигнута за ${appData.getTargetMonth()} ${declination(numberMonth, ['месяц', 'месяца', 'месяцев'])}`);
 console.log(`${appData.getStatusIncome()}`);
 
 for (let key in appData) {
   console.log(`Наша программа включает в себя данные: ${key} - ${appData[key]}`);
 }
+
+// console.log(appData.addExpenses.toUpperCase().split(', '));
+
+// appData.addExpenses.forEach(function(item) {
+//   console.log((item[0].toUpperCase() +item.slice(1)).split(', '));
+// });
+
+console.log(appData.addExpenses.map(function(item) {
+  return item[0].toUpperCase() + item.slice(1);
+}).join(', '));
+
+
+
+
+
+
+// const isNumber = function(n) {
+//   return !isNaN(parseFloat(n)) && isFinite(n);
+// };
+
+// let kk = '4567989';
+// let tt = 'Купил ВАЗ 2108';
+// console.log(isNumber(tt)); // false
+// console.log(isNumber(kk)); // true
+
 
 
 
