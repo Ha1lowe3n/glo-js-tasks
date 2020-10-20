@@ -147,29 +147,11 @@ for (let key in appData) {
   console.log(`Наша программа включает в себя данные: ${key} - ${appData[key]}`);
 }
 
-// console.log(appData.addExpenses.toUpperCase().split(', '));
-
-// appData.addExpenses.forEach(function(item) {
-//   console.log((item[0].toUpperCase() +item.slice(1)).split(', '));
-// });
-
 console.log(appData.addExpenses.map(function(item) {
   return item[0].toUpperCase() + item.slice(1);
 }).join(', '));
 
 
-
-
-
-
-// const isNumber = function(n) {
-//   return !isNaN(parseFloat(n)) && isFinite(n);
-// };
-
-// let kk = '4567989';
-// let tt = 'Купил ВАЗ 2108';
-// console.log(isNumber(tt)); // false
-// console.log(isNumber(kk)); // true
 
 
 
