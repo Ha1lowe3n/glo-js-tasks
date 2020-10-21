@@ -1,5 +1,37 @@
 'use strict';
 
+// Кнопку "Рассчитать" через id
+const btnStart = document.querySelector('#start');
+
+// Кнопки “+” (плюс) через Tag, каждую в своей переменной 
+const btnIncome = document.querySelectorAll('button')[0],
+      btnExspenses = document.querySelectorAll('button')[1];
+
+// Чекбокс по id через querySelector
+const checkBox = document.querySelector('#deposit-check');
+
+// Поля для ввода возможных доходов (additional_income-item) при помощи querySelectorAll
+const addIncomeItem = document.querySelectorAll('.additional_income-item');
+
+// Каждый элемент в правой части программы через класс(не через querySelector), которые имеют в имени класса "-value", начиная с class="budget_day-value" и заканчивая class="target_month-value">
+const budgetDayValue = document.getElementsByClassName('budget_day-value'),
+      expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
+      addIncomeValue = document.getElementsByClassName('additional_income-value'),
+      addExpensesValue = document.getElementsByClassName('additional_expenses-value'),
+      incomePeriodValue = document.getElementsByClassName('income_period-value'),
+      targetMonthValue = document.getElementsByClassName('target_month-value');
+
+// Оставшиеся поля через querySelector каждый в отдельную переменную: поля ввода (input) с левой стороны и не забудьте про range.
+const periodSelect = document.querySelector('.period-select'),
+      salaryAmount = document.querySelector('.salary-amount'),
+      incomeItems = document.querySelector('.income-items'),
+      expensesItems = document.querySelector('.expenses-items'),
+      additionalExpensesItem = document.querySelector('.additional_expenses-item'),
+      depositAmount = document.querySelector('.deposit-amount'),
+      depositPercent = document.querySelector('.deposit-percent'),
+      targetAmount = document.querySelector('.target-amount');
+
+
 // функция для правильного окончания слов
 const declination = function(number, txt) {
   let cases = [2, 0, 1, 1, 1, 2];
@@ -39,7 +71,6 @@ const appData = {
   budgetMonth: 0,
   expensesMonth: 0,
   asking: function() {
-
     if (confirm('Есть ли у вас дополнительный источник заработка?')) {
       let itemIncome = prompt('Какой у вас дополнительный заработок', 'Такси');
       
