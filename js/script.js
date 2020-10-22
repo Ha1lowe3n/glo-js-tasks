@@ -1,7 +1,7 @@
 'use strict';
 
 // Кнопку "Рассчитать" через id
-const btnStart = document.querySelector('#start');
+const btnStart = document.getElementById('#start');
 
 // Кнопки “+” (плюс) через Tag, каждую в своей переменной 
 const btnIncome = document.querySelectorAll('button')[0],
@@ -24,12 +24,15 @@ const budgetDayValue = document.getElementsByClassName('budget_day-value'),
 // Оставшиеся поля через querySelector каждый в отдельную переменную: поля ввода (input) с левой стороны и не забудьте про range.
 const periodSelect = document.querySelector('.period-select'),
       salaryAmount = document.querySelector('.salary-amount'),
-      incomeItems = document.querySelector('.income-items'),
-      expensesItems = document.querySelector('.expenses-items'),
+      incomeTitle = document.querySelector('.income-items .income-title'),
+      incomeAmount = document.querySelector('.income-items .income-amount'),
+      expensesTitle = document.querySelector('.expenses-items .expenses-title'),
+      expensesAmount = document.querySelector('.expenses-items .expenses-amount'),
       additionalExpensesItem = document.querySelector('.additional_expenses-item'),
       depositAmount = document.querySelector('.deposit-amount'),
       depositPercent = document.querySelector('.deposit-percent'),
       targetAmount = document.querySelector('.target-amount');
+
 
 
 // функция для правильного окончания слов
