@@ -4,8 +4,9 @@
 const btnStart = document.getElementById('#start');
 
 // Кнопки “+” (плюс) через Tag, каждую в своей переменной 
-const btnIncome = document.querySelectorAll('button')[0],
-      btnExspenses = document.querySelectorAll('button')[1];
+const btnIncome = document.getElementsByTagName('button')[0],
+      btnExspenses = document.getElementsByTagName('button')[1];
+
 
 // Чекбокс по id через querySelector
 const checkBox = document.querySelector('#deposit-check');
@@ -14,12 +15,13 @@ const checkBox = document.querySelector('#deposit-check');
 const addIncomeItem = document.querySelectorAll('.additional_income-item');
 
 // Каждый элемент в правой части программы через класс(не через querySelector), которые имеют в имени класса "-value", начиная с class="budget_day-value" и заканчивая class="target_month-value">
-const budgetDayValue = document.getElementsByClassName('budget_day-value'),
-      expensesMonthValue = document.getElementsByClassName('expenses_month-value'),
-      addIncomeValue = document.getElementsByClassName('additional_income-value'),
-      addExpensesValue = document.getElementsByClassName('additional_expenses-value'),
-      incomePeriodValue = document.getElementsByClassName('income_period-value'),
-      targetMonthValue = document.getElementsByClassName('target_month-value');
+const budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
+      expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0],
+      addIncomeValue = document.getElementsByClassName('additional_income-value')[0],
+      addExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
+      incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
+      targetMonthValue = document.getElementsByClassName('target_month-value')[0];
+
 
 // Оставшиеся поля через querySelector каждый в отдельную переменную: поля ввода (input) с левой стороны и не забудьте про range.
 const periodSelect = document.querySelector('.period-select'),
