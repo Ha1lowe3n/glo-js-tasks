@@ -264,7 +264,7 @@ salaryAmount.addEventListener('input', appData.startDisable);
 const checkNumber = e => {
 
   const changeNumber = e => {
-      if (!/^[\d]+$/.test(e.target.value) && e.target.trim().value !== '') {
+      if (!/^[\d]+$/.test(e.target.value) && e.target.value.trim() !== '') {
           alert('Допускается только ввод цифр!');
           e.target.value = '';
           e.target.removeEventListener('blur', changeNumber);
