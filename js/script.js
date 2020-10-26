@@ -125,7 +125,6 @@ const appData = {
 
   addExpensesBlock: function() {
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
-    console.log(expensesItems);
     cloneExpensesItem.querySelector('.expenses-title').value = '';
     cloneExpensesItem.querySelector('.expenses-amount').value = '';
     expensesItems[0].parentNode.insertBefore(cloneExpensesItem, btnExspensesPlus);
@@ -138,7 +137,6 @@ const appData = {
 
   addIncomeBlock: function() {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
-    console.log(incomeItems);
     cloneIncomeItem.querySelector('.income-title').value = '';
     cloneIncomeItem.querySelector('.income-amount').value = '';
     incomeItems[0].parentNode.insertBefore(cloneIncomeItem, btnIncomePlus);
@@ -266,7 +264,7 @@ salaryAmount.addEventListener('input', appData.startDisable);
 const checkNumber = e => {
 
   const changeNumber = e => {
-      if (!/^[\d]+$/.test(e.target.value) && e.target.value !== '') {
+      if (!/^[\d]+$/.test(e.target.value) && e.target.trim().value !== '') {
           alert('Допускается только ввод цифр!');
           e.target.value = '';
           e.target.removeEventListener('blur', changeNumber);
