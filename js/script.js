@@ -1,6 +1,7 @@
 'use strict';
 
 const start = document.getElementById('start'),
+      cancel = document.getElementById('cancel'),
       btnIncomePlus = document.getElementsByTagName('button')[0],
       btnExspensesPlus = document.getElementsByTagName('button')[1],
       checkBox = document.querySelector('#deposit-check'),
@@ -67,20 +68,34 @@ const appData = {
     
     this.showResult();
 
-    if (start.textContent === 'Рассчитать') {
-      this.blockInputs();
-      start.textContent = 'Сбросить';
-    } else {
-      this.reset();
-      start.textContent = 'Рассчитать';
-      this.unblockInputs();
-    }
+    
+    this.blockInputs();
+    start.style.display = 'none';
+    cancel.style.display = 'block';
   },
 
   reset: function() {
     document.querySelectorAll('section.main input[type="text"]').forEach(function(item) {
       item.value = '';
     });
+
+    start.style.display = 'block';
+    cancel.style.display = 'none';
+
+    this.unblockInputs();
+    this.startDisable();
+
+    this.addExpenses = [];
+    this.addIncome = [];
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.expenses = {};
+    this.expensesMonth = 0;
+    this.income = {};
+    this.incomeMonth = 0;
+    this.moneyDeposit = 0;
+    this.percentDeposit = 0;
   },
 
   blockInputs: function() {
@@ -239,11 +254,10 @@ const appData = {
   }
 };
 
-const bindStart = appData.start.bind(appData);
-
 appData.startDisable();
 
-start.addEventListener('click', bindStart);
+start.addEventListener('click', appData.start.bind(appData));
+cancel.addEventListener('click', appData.reset.bind(appData));
 btnExspensesPlus.addEventListener('click', appData.addExpensesBlock);
 btnIncomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.eventTargetValue);
