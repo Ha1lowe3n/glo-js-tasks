@@ -96,6 +96,9 @@ const appData = {
     this.incomeMonth = 0;
     this.moneyDeposit = 0;
     this.percentDeposit = 0;
+
+    periodAmount.innerHTML = 1;
+    periodSelect.value = 1;
   },
 
   blockInputs: function() {
@@ -267,6 +270,7 @@ const checkNumber = e => {
       if (!/^[\d]+$/.test(e.target.value) && e.target.value.trim() !== '') {
           alert('Допускается только ввод цифр!');
           e.target.value = '';
+          appData.startDisable();
           e.target.removeEventListener('blur', changeNumber);
       }
   };
@@ -280,6 +284,7 @@ const checkText = e => {
       if (!/^[,. а-яА-ЯёЁ]+$/.test(e.target.value) && e.target.value !== '') {
           alert('Допускается только ввод русских букв, пробела, точки и запятой!');
           e.target.value = '';
+          appData.startDisable();
           e.target.removeEventListener('blur', changeText);
       }
   };
