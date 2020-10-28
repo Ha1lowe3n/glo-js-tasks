@@ -1,44 +1,34 @@
 'use strict';
 
-// генерация числа
-const randomNumber = function (min, max) {
-    // получить случайное число от (min-0.5) до (max+0.5)
-    const rand = min - 0.5 + Math.random() * (max - min + 1);
-    return Math.round(rand);
+function DomElement (selector, height, width, bg, fontSize) {
+  this.selector = selector;    
+  this.height = height;
+  this.width = width;
+  this.bg = bg;
+  this.fontSize = fontSize;
+}
+
+DomElement.prototype.createNewDiv = function () {
+  let div;
+  if (this.selector[0] === '.') {
+    div = document.createElement('div');
+    div.classList.add(this.selector.slice(1));
+  } else if (this.selector[0] === '#') {
+    div = document.createElement('p');
+    div.id = this.selector.slice(1);
+  }
+
+  div.style.cssText = `height: ${this.height}px;
+    width: ${this.width}px;
+    background: ${this.bg};
+    font-size: ${this.fontSize}px;`;
+
+  return div;
 };
 
-// проверка на число
-const isNumber = function(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-};
+const classDiv = new DomElement('.new-div', 200, 200, 'black', 20);
+const pDiv = new DomElement('#new-p', 100, 100, 'green', 10);
 
-const numberGame = function() {
-    const hideNumber = randomNumber(1, 100);
-    const startGame = function() {
-        const enteredNumber = prompt('Угадай число от 1 до 100');
-
-        if (enteredNumber === null) {
-            alert('Игра окончена');
-
-        } else if (isNumber(enteredNumber)) {
-            if (enteredNumber > hideNumber) {
-                alert('Загаданное число меньше');
-                startGame();
-            } else if (enteredNumber < hideNumber) {
-                alert('Загаданное число больше');
-                startGame();
-            } else {
-                alert('Поздравляю, Вы угадали!!!');
-            }
-            
-        } else {
-            alert('Введи число!');
-            startGame();
-        }
-    };
-
-    startGame();
-};
-
-numberGame();
+document.body.append(classDiv.createNewDiv());
+document.body.append(pDiv.createNewDiv());
     
