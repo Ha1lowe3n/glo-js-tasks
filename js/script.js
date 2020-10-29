@@ -163,7 +163,7 @@ class AppData {
 
   getAddExpInc() {
     const addFunc = (item) => {
-      console.log(item);
+      console.log(item.className);
       if (item.className === undefined) {
         item = item.trim();
         if (item !== '') {
@@ -173,7 +173,7 @@ class AppData {
       
       else if (item.className === 'additional_income-item') {
         const itemValue = item.value.trim();
-        if (item !== '') {
+        if (itemValue !== '') {
           this.addIncome.push(itemValue);
         } 
       }   
