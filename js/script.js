@@ -244,21 +244,25 @@ class AppData {
 
   checkPlaceholder(e) {
     const changeInput = (e) => {
+      const clearPlaceholder = (e) => {
+        if (e.target.placeholder === 'Наименование') {
+          alert('Допускается только ввод русских букв, пробела, точки и запятой!');
+        } else if (e.target.placeholder === 'Сумма') {
+          alert('Допускается только ввод цифр!');
+        }
+
+        e.target.value = '';
+        this.startDisable();
+        e.target.removeEventListener('blur', changeInput);
+      };
+
       if (e.target.placeholder === 'Наименование') {
         if (!/^[,. а-яА-ЯёЁ]+$/.test(e.target.value) && e.target.value !== '') {
-          alert('Допускается только ввод русских букв, пробела, точки и запятой!');
-          e.target.value = '';
-          this.startDisable();
-          e.target.removeEventListener('blur', changeInput);
+          clearPlaceholder(e);
         }
-      }
-      
-      if (e.target.placeholder === 'Сумма') {
+      } else if (e.target.placeholder === 'Сумма') {
         if (!/^[\d]+$/.test(e.target.value) && e.target.value.trim() !== '') {
-          alert('Допускается только ввод цифр!');
-          e.target.value = '';
-          this.startDisable();
-          e.target.removeEventListener('blur', changeInput);
+          clearPlaceholder(e);
         }
       } 
     };
