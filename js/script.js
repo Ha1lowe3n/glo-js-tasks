@@ -106,13 +106,13 @@ class AppData {
   }
 
   blockInputs() {
-    document.querySelectorAll('.data input[type=text] .deposit-bank').forEach(item => {
+    document.querySelectorAll('.data input[type=text]').forEach(item => {
       item.disabled = true;   
     });
   }
 
   unblockInputs() {
-    document.querySelectorAll('.data input[type=text] .deposit-bank').forEach(item => {
+    document.querySelectorAll('.data input[type=text]').forEach(item => {
       item.disabled = false;   
     });
   }
@@ -259,7 +259,7 @@ class AppData {
       } 
       
       else if (e.target.placeholder === 'Процент') {
-        if (depositPercent.value.trim() !== 'number' && depositPercent.value > 100 && depositPercent.value < 0) {
+        if (depositPercent.value.trim() !== 'number' && depositPercent.value > 100 || depositPercent.value < 0) {
           alert('Введите корректное значение в поле "Проценты"');
           clearPlaceholder(e);
         }
@@ -272,6 +272,7 @@ class AppData {
   changePercent() {
     const valueSelect = this.value;
     if (valueSelect === 'other') {
+      depositPercent.value = '';
       depositPercent.style.display = 'inline-block';
       this.depositPercent = depositPercent.value; 
     } else {
